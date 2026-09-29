@@ -1,2 +1,2 @@
 from .fbv import items_view
-from .cbv import ItemsView
+from .cbv import ItemsView, UserCreateView
