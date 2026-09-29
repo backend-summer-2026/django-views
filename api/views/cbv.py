@@ -1,16 +1,25 @@
-from django.views import View
-from django.http import HttpRequest, HttpResponse
+from rest_framework.views import APIView
+from rest_framework.request import Request
+from rest_framework.response import Response
 
 
-class ItemsView(View):
-    def get(self, request: HttpRequest) -> HttpResponse:
-        return HttpResponse('GET request')
+class ItemsView(APIView):
+    def get(self, request: Request) -> Response:
+        search = request.query_params.get('search')
+        limit = request.query_params.get('limit')
 
-    def post(self, request: HttpRequest) -> HttpResponse:
-        return HttpResponse('POST request')
+        print(search, limit)
 
-    def delete(self, request: HttpRequest) -> HttpResponse:
-        return HttpResponse('DELETE request')
+        return Response({'message': 'GET request'})
 
-    def put(self, request: HttpRequest) -> HttpResponse:
-        return HttpResponse('PUT request')
+    def post(self, request: Request) -> Response:
+        data = request.data
+        print(data)
+
+        return Response({'message': 'POST request'})
+
+    def delete(self, request: Request) -> Response:
+        return Response({'message': 'DELETE request'})
+
+    def put(self, request: Request) -> Response:
+        return Response({'message': 'PUT request'})
